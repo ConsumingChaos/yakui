@@ -25,8 +25,8 @@ pub struct Graphics {
 }
 
 impl Graphics {
-    pub async fn new(window: &Window, sample_count: u32) -> Self {
-        let mut size = window.inner_size();
+    pub async fn new(window: &dyn Window, sample_count: u32) -> Self {
+        let mut size = window.surface_size();
 
         // FIXME: On web, we're receiving (0, 0) as the initial size of the
         // window, which makes wgpu upset. If we hit that case, let's just make
@@ -179,7 +179,7 @@ impl Graphics {
         &mut self,
         yak: &mut yakui::Yakui,
         event: &WindowEvent,
-        event_loop: &ActiveEventLoop,
+        event_loop: &dyn ActiveEventLoop,
     ) -> bool {
         // yakui_winit will return whether it handled an event. This means that
         // yakui believes it should handle that event exclusively, like if a
@@ -193,7 +193,7 @@ impl Graphics {
                 event_loop.exit();
             }
 
-            WindowEvent::Resized(size) => {
+            WindowEvent::SurfaceResized(size) => {
                 // Ignore any resize events that happen during Winit's
                 // initialization in order to avoid racing the wgpu swapchain
                 // and causing issues.
