@@ -9,5 +9,4 @@ edition = "2021"
 [dependencies]
 yakui-core = { path = "../yakui-core", version = "0.3.0" }
 
-# TODO: Disable all default features once supported (https://github.com/rust-windowing/winit/issues/3174)
-winit = { workspace = true, features = ["x11"] }
+winit = { workspace = true }
