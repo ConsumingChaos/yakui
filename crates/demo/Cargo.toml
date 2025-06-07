@@ -12,8 +12,6 @@ yakui-app = { path = "../yakui-app" }
 
 env_logger.workspace = true
 log.workspace = true
-pollster.workspace = true
-
 wgpu = { workspace = true, features = ["webgl"] }
 
 winit.workspace = true
