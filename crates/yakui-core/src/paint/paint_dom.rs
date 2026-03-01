@@ -248,7 +248,7 @@ impl PaintDom {
     /// Use the given region as the clipping rect for all following paint calls.
     fn push_clip(&mut self, region: Rect) {
         let mut unscaled = Rect::from_pos_size(
-            region.pos() * self.scale_factor,
+            self.unscaled_viewport.pos() + (region.pos() * self.scale_factor),
             region.size() * self.scale_factor,
         );
 
